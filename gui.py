@@ -6,20 +6,21 @@ import FreeSimpleGUI as sg
 sg.theme("LightBlue")
 
 """ Widgets start! """
-choose_label = sg.Text("Choose your button", key="choose_label")
-lock_btn = sg.Button("Lock", key="lock_btn", pad=(50, 50), button_color="Red")
-unlock_btn = sg.Button("Unlock", key="unlock_btn", pad=(50, 50), button_color="Green")
-exit_btn = sg.Button("Exit")
-status_label = sg.Text("The locker is currently", key="status_label", pad=(40,20))
-status = sg.Text(key="status")
-
+choose_label = sg.Text("Choose your button", key="choose_label", pad=(60,1))
+lock_btn = sg.Button("Lock", key="lock_btn", pad=(50, 25), button_color="Red")
+unlock_btn = sg.Button("Unlock", key="unlock_btn", pad=(50, 25), button_color="Green")
+exit_btn = sg.Button("Exit", key="exit_btn")
+status_label = sg.Text("The locker is currently:", key="status_label", pad=(50,1))
+status = sg.Text("______", key="status")
 """ Widgets end! """
 
 layout = [[choose_label],
           [lock_btn, unlock_btn],
           [status_label, status]]
 
-window = sg.Window("Lock-The-Mechanism-Controller",layout=layout, font=('Helvetica', 20)) #, size=(500,500)
+window = sg.Window("Lock-The-Mechanism",
+                   layout=layout,
+                   font=('Helvetica', 20)) 
 
 while True:
     event, values = window.read() # type: ignore
@@ -29,10 +30,12 @@ while True:
     
     match event:
         case "lock_btn":
-            window["status"].update(value="LOCKED") # type: ignore
+            print("locked")
+            window["status"].update(value="LOCKED❌") # type: ignore
 
         case "unlock_btn":
-            window["status"].update(value="UNLOCKED!") # type: ignore
+            print("unlocked")
+            window["status"].update(value="UNLOCKED✅") # type: ignore
 
         case "Exit":
             break
