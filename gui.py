@@ -2,8 +2,20 @@
 for sending messages to the Arduino"""
 
 import FreeSimpleGUI as sg
+import serial
+import time
 
 sg.theme("LightBlue")
+
+# Setup serial connection to Arduino
+# Change 'COM3' to your Arduino's port
+try:
+    arduino = serial.Serial('COM4', 9600, timeout=1)
+    time.sleep(2)  # Wait for Arduino to initialize
+    print("Connected to Arduino")
+except Exception as e:
+    print(f"Failed to connect to Arduino: {e}")
+    arduino = None
 
 """ Widgets start! """
 choose_label = sg.Text("Choose your button", key="choose_label", pad=(60,1))
