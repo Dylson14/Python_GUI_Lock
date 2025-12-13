@@ -20,8 +20,17 @@ void loop() {
     
     // Remove any whitespace/carriage returns
     command.trim();
+    command.toLowerCase();
     
-    // TODO: Next step - compare command and set angle
+    // Compare command and set angle
+    if (command == "locked") {
+      angle = 180;
+      Serial.println("Moving to locked position (180 degrees)");
+    }
+    else if (command == "unlocked") {
+      angle = 30;
+      Serial.println("Moving to unlocked position (30 degrees)");
+    }
   }
 
 
