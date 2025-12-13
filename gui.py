@@ -43,11 +43,15 @@ while True:
     match event:
         case "lock_btn":
             print("locked")
-            window["status"].update(value="LOCKED❌") # type: ignore
+            if arduino:
+                arduino.write(b"locked\n")  # Send "locked" to Arduino
+                window["status"].update(value="LOCKED❌") # type: ignore
 
         case "unlock_btn":
             print("unlocked")
-            window["status"].update(value="UNLOCKED✅") # type: ignore
+            if arduino:
+                arduino.write(b"unlocked\n")
+                window["status"].update(value="UNLOCKED✅") # type: ignore
 
         case "Exit":
             break
@@ -55,5 +59,7 @@ while True:
         case sg.WIN_CLOSED:
             break
 
+if arduino:
+    arduino.close()  # Close serial connection
 print("bye bye!")
 window.close()
