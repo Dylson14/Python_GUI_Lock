@@ -3,7 +3,7 @@
 
 Servo myServo;
 
-int angle = 90;
+int angle = 120;
 
 void setup() {
 myServo.attach(9);
